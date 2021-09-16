@@ -1,0 +1,15 @@
+C:\Users\Andres\source\repos\Vuelos\Business\bin\Debug\net5.0\Business.deps.json
+C:\Users\Andres\source\repos\Vuelos\Business\bin\Debug\net5.0\Business.dll
+C:\Users\Andres\source\repos\Vuelos\Business\bin\Debug\net5.0\ref\Business.dll
+C:\Users\Andres\source\repos\Vuelos\Business\bin\Debug\net5.0\Business.pdb
+C:\Users\Andres\source\repos\Vuelos\Business\bin\Debug\net5.0\DataAcces.dll
+C:\Users\Andres\source\repos\Vuelos\Business\bin\Debug\net5.0\DataAcces.pdb
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.csproj.AssemblyReference.cache
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.AssemblyInfoInputs.cache
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.AssemblyInfo.cs
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.csproj.CopyComplete
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.dll
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\ref\Business.dll
+C:\Users\Andres\source\repos\Vuelos\Business\obj\Debug\net5.0\Business.pdb
