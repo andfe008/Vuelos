@@ -1,48 +1,129 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Vuelos</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuelos</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+
+    <link rel="stylesheet" href="~/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="~/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="~/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Vuelos</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active ps ps--active-y">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html">
+                                <h2>Misvuelos.com</h2>
+                            </a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menú</li>
+                        <li class="sidebar-item active " id="vuelo">
+                            <a href="/Vuelo/Index" class="sidebar-link">
+                                <i class="bi bi-signpost-split-fill"></i>
+                                <span>Vuelos</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="sidebar-item active ">
+                            <a href="/Usuario/Index" class="sidebar-link" id="usuario">
+                                <i class="bi bi-file-person"></i>
+                                <span>Usuarios</span>
+                            </a>
                         </li>
+
+
+                        <li class="sidebar-item  ">
+                            <a href="/Login/Logout" class="sidebar-link">
+                                <i class="bi bi-box-arrow-in-left"></i>
+                                <span>Cerrar Sesión</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 969px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 568px;"></div></div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Vuelos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>@ViewBag.title</h3>
+            </div>
+            <div class="page-content">
+                <section class="row">
+                    @RenderBody()
+                </section>
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>page</p>
+                    </div>
+                    <div class="float-end">
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="~/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
+    <script src="~/js/pages/dashboard.js"></script>
+
+    <script src="~/js/main.js"></script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+<script>
+    $(function () {
+        var roles = "@HttpContextAccessor.HttpContext.Session.GetString("User")";
+        var object = JSON.parse(roles.replace(/&quot;/g, '"'));
+        if (object.IdRol ==1) {
+            $("#usuario").remove();
+        }
+
+        if (object.IdRol == 2) {
+            $("#vuelo").remove();
+        }
+    })
+</script>
+
 </html>

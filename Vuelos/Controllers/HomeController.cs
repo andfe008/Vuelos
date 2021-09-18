@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using static Vuelos.Controllers.CheckSesion;
 
 namespace Vuelos.Controllers
 {
@@ -18,17 +19,21 @@ namespace Vuelos.Controllers
             _logger = logger;
         }
 
+
+        [SessionCheck]
         public IActionResult Index()
         {
             Usuario usuario = new Usuario();
             return View(usuario.Select());
         }
 
+        [SessionCheck]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [SessionCheck]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

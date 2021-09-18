@@ -1,0 +1,217 @@
+﻿@model List<DataAcces.Models.Vwvuelos>
+
+<div class="row" id="table-bordered">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-primary">
+                    Vuelos hoy <span class="badge bg-transparent">
+                        @Model.Where(p => p.Fecha_Salida.Day == DateTime.Now.Day &&
+                                           p.Fecha_Salida.Month == DateTime.Now.Month &&
+                                           p.Fecha_Salida.Year == DateTime.Now.Year).Count()
+                    </span>
+                </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#default">
+                    Agregar vuelo <span class="badge bg-transparent">+</span>
+                </button>
+            </div>
+            <div class="card-content">
+                <!-- table bordered -->
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th># vuelo</th>
+                                <th>Origen</th>
+                                <th>Fecha salida</th>
+                                <th>Hora</th>
+                                <th>Destino</th>
+                                <th>Fecha llegada</th>
+                                <th>Hora</th>
+                                <th>Aerolínea</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-bold-500">@item.Numero_Vuelo</td>
+                                    <td>@item.origen</td>
+                                    <td class="text-bold-500">@String.Format("{0:MM/dd/yyyy}", item.Fecha_Salida)</td>
+                                    <td class="text-bold-500">@item.HoraSalida</td>
+                                    <td>@item.Destino</td>
+                                    <td>@String.Format("{0:MM/dd/yyyy}", item.FEcha_Llegada)</td>
+                                    <td>@item.HoraLlegada</td>
+                                    <td>@item.Aerolinea</td>
+                                    <td>
+                                        <select name="Estado" class="form-select" onchange="CambiaEstado('@item.Numero_Vuelo',this.value)" id="Estado">
+                                            @if (item.Estado == 0)
+                                            {
+                                                <option value="0" selected>Inactivo</option>
+                                                <option value="1">Activo</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="0">Inactivo</option>
+                                                <option value="1" selected>Activo</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade text-left" id="default" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel1">Nuevo vuelo</h5>
+                <button type="button" class="close rounded-pill"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            @using (Html.BeginForm("New", "Vuelo", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <p>
+                        Por favor rellene los campos a continuación para el nuevo vuelo.
+                    </p>
+                    <div class="card-body">
+
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Origen</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <fieldset class="form-group">
+                                                <select name="idASalida" class="form-select" id="Origins">
+                                                    <option value="0">---</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Fecha Salida</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <input name="FechaSalida" type="date" class="form-control" id="Dtedeparture" />
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-clock"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Hora Salida</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <input name="HoraSalida" type="time" class="form-control" id="departure">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-clock"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Destino</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <select name="idLlegada" class="form-select" id="Destine">
+                                                <option value="0">---</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>llegada</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <input name="FechaLlegada" type="date" class="form-control" id="DteArrival">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-clock"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Hora llegada</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <input name="HoraLlegada" type="time" class="form-control" id="arrival">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-clock"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Aerolínea</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <select class="form-select" id="Airline">
+                                                <option value="0">---</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Aviones</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-icon-left">
+                                        <div class="position-relative">
+                                            <select name="IdAvion" class="form-select" id="Flys">
+                                                <option value="0">---</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Cerrar</span>
+                    </button>
+                    @*<input type="submit"  value="Agregar" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal" />*@
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="~/js/Vuelo/Vuelo.js"></script>

@@ -1,66 +1,27 @@
 ﻿@model List<DataAcces.Models.Usuario>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Lista de usuarios";
 }
 
-<style type="text/css">
-    .tg {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-
-        .tg td {
-            border-color: black;
-            border-style: solid;
-            border-width: 1px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            overflow: hidden;
-            padding: 10px 5px;
-            word-break: normal;
-        }
-
-        .tg th {
-            border-color: black;
-            border-style: solid;
-            border-width: 1px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            overflow: hidden;
-            padding: 10px 5px;
-            word-break: normal;
-        }
-
-        .tg .tg-hyan {
-            background-color: #34cdf9;
-            text-align: left;
-            vertical-align: top
-        }
-
-        .tg .tg-0lax {
-            text-align: left;
-            vertical-align: top
-        }
-</style>
-<table class="tg">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th class="tg-hyan">Id</th>
-            <th class="tg-hyan">Nombre</th>
-            <th class="tg-hyan">Estado</th>
-            <th class="tg-hyan">Rol</th>
+            <th scope="col">Registro</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Rol</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td class="tg-0lax">@item.Id</td>
-                <td class="tg-0lax">@item.Nick</td>
-                <td class="tg-0lax">@item.Estado</td>
-                <td class="tg-0lax">@item.IdRol</td>
-            </tr>
+        <tr>
+            <td scope="row">@item.Id</td>
+            <td scope="row">@item.Nick</td>
+            <td scope="row">@item.Estado</td>
+            <td scope="row">@item.IdRol</td>
+        </tr>
         }
     </tbody>
 </table>
+

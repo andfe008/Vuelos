@@ -1,2 +1,27 @@
-﻿
-<h2>hola</h2>
+﻿@model List<DataAcces.Models.Usuario>
+@{
+    ViewData["Title"] = "Lista de usuarios";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Registro</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td scope="row">@item.Id</td>
+                <td scope="row">@item.Nick</td>
+                <td scope="row">@item.Estado</td>
+                <td scope="row">@item.IdRol</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

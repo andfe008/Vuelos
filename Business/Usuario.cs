@@ -15,15 +15,20 @@ namespace Business
         public List<DataAcces.Models.Usuario> Select()
         {
             string query = "SELECT * FROM Usuario";
-
-            using (var conn = connection.GetConnection())
+            try
             {
-                return conn.Query<DataAcces.Models.Usuario>(query).ToList();
+                using (var conn = connection.GetConnection())
+                {
+                    return conn.Query<DataAcces.Models.Usuario>(query).ToList();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
-        //public DataAcces.Models.Usuario Select(int id)
-        //{
 
-        //}
     }
 }

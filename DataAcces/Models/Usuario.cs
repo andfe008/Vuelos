@@ -14,5 +14,6 @@ namespace DataAcces.Models
         public int IdRol { get; set; }
         public int IdPersona { get; set; }
         public DateTime FechaCreacion { get; set; }
+        public virtual ICollection<Persona> Persona { get; set; }
     }
 }
