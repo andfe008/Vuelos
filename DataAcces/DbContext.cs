@@ -11,8 +11,7 @@ namespace DataAcces
 
         public SqlConnection GetConnection()
         {
-            //if (ConnectionString.State == ConnectionState.Closed)
-                //ConnectionString.Open();
+
             return ConnectionString;
         }
 

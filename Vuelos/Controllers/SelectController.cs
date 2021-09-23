@@ -15,7 +15,7 @@ namespace Vuelos.Controllers
             return View();
         }
 
-        [SessionCheck]
+        //[SessionCheck]
         public IActionResult City()
         {
             Business.Select select = new Business.Select();

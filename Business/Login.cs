@@ -23,13 +23,11 @@ namespace Business
                 using (var conn = connection.GetConnection())
                 {
                     var usert = conn.Query<DataAcces.Models.Usuario>(query, new { Nick = model.Nick, Clave = model.Clave }).FirstOrDefault();
-                    //valido si el "usert" es diferente de nulo es porque encontro el usuario
                     if (usert != null)
                     {
                         response.Status = 1;
                         response.Mensaje = "Usuario encontrado";
                         response.Data = JsonSerializer.Serialize(usert);
-                        //context.Session("User") = usert;
                     }
                     else
                     {

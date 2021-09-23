@@ -4,27 +4,26 @@
     var Airline = $("#Airline");
     var Flys = $("#Flys");
 
-    $.post("/Select/City", function (data) {
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-            Origins.append(`<option value="${data[i].keys}">${data[i].vals}</option>`);
-            Destine.append(`<option value="${data[i].keys}">${data[i].vals}</option>`);
+    $.post("/Select/City", function (response) {
+        for (var i = 0; i < response.length; i++) {
+            debugger
+            Origins.append(`<option value="${response[i].keys}">${response[i].vals}</option>`);
+            Destine.append(`<option value="${response[i].keys}">${response[i].vals}</option>`);
         }
 
     })
 
-    $.post("/Select/Airline", function (data) {
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-            Airline.append(`<option value="${data[i].keys}">${data[i].vals}</option>`);
+    $.post("/Select/Airline", function (response) {
+        for (var i = 0; i < response.length; i++) {
+            Airline.append(`<option value="${response[i].keys}">${response[i].vals}</option>`);
         }
     })
 
     $("#Airline").change(function () {
         var Airline = ("#Airline").vals;
-        $.post("/Select/Filter", { id: this.value }, function (data) {
-            for (var i = 0; i < data.length; i++) {
-                Flys.append(`<option value="${data[i].keys}">${data[i].vals}</option>`);
+        $.post("/Select/Filter", { id: this.value }, function (response) {
+            for (var i = 0; i < response.length; i++) {
+                Flys.append(`<option value="${response[i].keys}">${response[i].vals}</option>`);
             }
         });
 
